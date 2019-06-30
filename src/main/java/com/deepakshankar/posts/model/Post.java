@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,9 +19,11 @@ import java.util.List;
 public class Post {
 
     private Long id;
+    private String title;
     private List<Paragraph> paragraphs;
     private Author author;
     private String notes;
+    private Genre genre;
 
     public Post() {
     }
@@ -37,10 +41,15 @@ public class Post {
     }
 
     public Post(Long id, List<Paragraph> paragraphs, Author author, String notes) {
+        this(id, paragraphs, author, notes, null);
+    }
+
+    public Post(Long id, List<Paragraph> paragraphs, Author author, String notes, Genre genre) {
         this.id = id;
         this.paragraphs = paragraphs;
         this.author = author;
         this.notes = notes;
+        this.genre = genre;
     }
 
     @Id
@@ -52,6 +61,16 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @NotNull
+    @Column(name = "PST_TTL")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -81,5 +100,16 @@ public class Post {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "PST_GNR")
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

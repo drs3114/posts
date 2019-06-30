@@ -64,7 +64,6 @@ public class Paragraph {
         this.content = content;
     }
 
-    @NotNull
     @Column(name = "PG_ORDR")
     public int getOrder() {
         return order;

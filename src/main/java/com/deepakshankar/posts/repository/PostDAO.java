@@ -1,9 +1,9 @@
 package com.deepakshankar.posts.repository;
 
-import com.deepakshankar.posts.model.Paragraph;
+import com.deepakshankar.posts.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ParagraphDao extends JpaRepository<Paragraph, Long> {
+public interface PostDAO extends JpaRepository<Post, Long> {
 }

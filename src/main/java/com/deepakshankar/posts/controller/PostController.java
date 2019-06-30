@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController(value = "/posts")
+@RestController
+@RequestMapping(value = "/posts")
 @CrossOrigin()
 public class PostController {
 
@@ -28,12 +30,12 @@ public class PostController {
         this.paragraphService = paragraphService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping
     public List<Post> findAll(){
         return this.service.findAll();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping
     public Post saveOne(@RequestBody final Post post){
         authorService.saveOne(post.getAuthor());
         post.getParagraphs().forEach(paragraph -> paragraphService.saveOne(paragraph));
