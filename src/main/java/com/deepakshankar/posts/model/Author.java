@@ -1,5 +1,7 @@
 package com.deepakshankar.posts.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -117,8 +119,9 @@ public class Author {
         this.websites = websites;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinColumn(name = "ATR_PSTS")
+    @Nullable
     public List<Post> getPosts() {
         return posts;
     }

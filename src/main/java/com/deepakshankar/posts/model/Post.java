@@ -33,6 +33,7 @@ public class Post {
      *
      */
     public Post() {
+        this(null);
     }
 
     /**
@@ -231,6 +232,7 @@ public class Post {
      *
      * @return
      */
+    @Column(name="PST_TYP")
     public PostType getType() {
         return type;
     }

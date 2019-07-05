@@ -7,6 +7,7 @@ import com.deepakshankar.posts.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +36,12 @@ public class PostController {
         return this.service.findAll();
     }
 
+    @GetMapping("{id}")
+    public Post findOne(@PathVariable(value = "id") final long id) {
+        return service.findOne(id);
+    }
     @PostMapping
     public Post saveOne(@RequestBody final Post post){
-        authorService.saveOne(post.getAuthor());
-        post.getParagraphs().forEach(paragraph -> paragraphService.saveOne(paragraph));
         return service.saveOne(post);
     }
 }

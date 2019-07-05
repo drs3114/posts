@@ -5,6 +5,7 @@ import com.deepakshankar.posts.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class AuthorController {
     }
 
     @GetMapping(value = "{id}")
-    public Author findOne(@RequestParam(name = "id") final Long id) {
+    public Author findOne(@PathVariable(name = "id") final Long id) {
         return this.service.findOne(id);
     }
 
