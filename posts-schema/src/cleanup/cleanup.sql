@@ -1,0 +1,11 @@
+drop table if exists app;
+drop table if exists app_info;
+drop table if exists app_info_authors;
+drop table if exists athr;
+drop table if exists athr_posts;
+drop table if exists author_websites;
+drop table if exists genre;
+drop table if exists post;
+drop table if exists post_paragraphs;
+drop table if exists prgrph;
+drop table if exists rctn;

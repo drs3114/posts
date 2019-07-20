@@ -4,3 +4,7 @@ pluginManagement {
     }
 }
 rootProject.name = 'posts'
+include 'posts-model'
+include 'posts-schema'
+include 'posts-service'
+

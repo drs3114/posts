@@ -1,26 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
     }
 }
-
-plugins {
-    id 'org.springframework.boot' version '2.1.6.RELEASE'
-    id 'java'
-    id "org.asciidoctor.convert" version "1.5.3"
-    id 'com.gradle.build-scan' version '1.16'
-}
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.palantir.docker'
 
 group = 'com.deepakshankar'
 version = '0.0.1-SNAPSHOT'
@@ -32,10 +23,11 @@ repositories {
 }
 
 dependencies {
+    compile project(':posts-model')
+    compile project(':posts-schema')
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation 'mysql:mysql-connector-java'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
     implementation 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.3.RELEASE'
@@ -52,29 +44,30 @@ test {
     outputs.dir snippetsDir
 }
 
-asciidoctor {
-    inputs.dir snippetsDir
-    dependsOn test
+processResources {
+    def branch, commit, dirty
+    doFirst {
+        branch = ['git', 'rev-parse', '--abbrev-ref', 'HEAD'].execute().text.trim()
+        commit = ['git', 'rev-parse', 'HEAD'].execute().text.take(6)
+        dirty = ['git', 'status', '--procelain'].execute().text.trim().isEmpty() ? '' : 'dirty'
+    }
+    filesMatching('**/*') {
+        filter {
+            it.replace('%APP_VERSION_TOKEN%', version)
+                    .replace('%GIT_BRANCH_TOKEN%', branch)
+                    .replace('%GIT_COMMIT_TOKEN%', commit)
+                    .replace('%GIT_DIRTY_TOKEN%', dirty)
+        }
+    }
 }
 
-task unpack(type: Copy) {
-    dependsOn bootJar
-    from(zipTree(tasks.bootJar.outputs.files.singleFile))
-    into("build/dependency")
+bootJar {
+    baseName = 'posts-cms'
+    version = '06.30.19-rel'
 }
 
-docker {
-    name "${project.group}/${bootJar.baseName}"
-    copySpec.from(tasks.unpack.outputs).into("dependency")
-    buildArgs(['DEPENDENCY': "dependency"])
+bootRun {
+    systemProperties = ['spring.config.location' : "file:src/main"]
 }
 
-bootJar.enabled = false
-jar.enabled = false
-bootRun.enabled = false
-
-buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
-}
 
