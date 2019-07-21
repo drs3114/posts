@@ -62,12 +62,11 @@ processResources {
 }
 
 bootJar {
-    baseName = 'posts-cms'
-    version = '06.30.19-rel'
+    
 }
 
 bootRun {
-    systemProperties = ['spring.config.location' : "file:src/main"]
+    systemProperties = ['spring.config.location' : "file:posts-service/src/main/resources/application.properties"]
 }
 
 
