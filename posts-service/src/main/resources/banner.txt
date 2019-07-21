@@ -1,9 +1,9 @@
 ${AnsiColor.BRIGHT_BLUE}                            .-'''-.
 ${AnsiColor.BRIGHT_BLUE}                           '   _    \
 ${AnsiColor.BRIGHT_BLUE}_________   _...._       /   /` '.   \
-${AnsiColor.BRIGHT_BLUE}   \     |.'      '-.   .   |     \  '
-${AnsiColor.BRIGHT_BLUE}   \      .'```'.    '. |   '      |  '      .|
-${AnsiColor.BRIGHT_BLUE}   \     |       \     \\    \     / /     .' |_
+${AnsiColor.BRIGHT_BLUE}\        |.'      '-.   .   |     \  '
+${AnsiColor.BRIGHT_BLUE} \        .'```'.    '. |   '      |  '      .|
+${AnsiColor.BRIGHT_BLUE}  \      |       \     \\    \     / /     .' |_
 ${AnsiColor.BRIGHT_BLUE}   |     |        |    | `.   ` ..' / _  .'     |       _
 ${AnsiColor.BRIGHT_BLUE}   |      \      /    .     '-...-'`.' |'--.  .-'     .' |
 ${AnsiColor.BRIGHT_BLUE}   |     |\`'-.-'   .'             .   | / |  |      .   | /
