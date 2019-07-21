@@ -12,6 +12,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
     id "org.asciidoctor.convert" version "1.5.3"
+    id "org.flywaydb.flyway" version "5.2.4"
 }
 
 apply plugin: 'java'
