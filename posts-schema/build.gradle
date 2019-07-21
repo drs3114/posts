@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+group = 'com.deepakshankar'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.flywaydb:flyway-core'
+    runtimeOnly 'mysql:mysql-connector-java'
+}
