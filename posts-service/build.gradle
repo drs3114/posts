@@ -14,7 +14,7 @@ buildscript {
 }
 
 group = 'com.deepakshankar'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-ALPHA'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
