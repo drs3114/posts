@@ -59,11 +59,9 @@ processResources {
     }
 }
 
-bootJar {
-}
-
 bootRun {
     systemProperties = ['spring.config.location' : "file:posts-service/src/main/resources/application.properties"]
 }
 
-
+jar.enabled = true
+bootJar.enabled = true
