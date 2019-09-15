@@ -25,7 +25,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
     }
 }
 
@@ -36,6 +36,7 @@ targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
 dependencies {
@@ -44,10 +45,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.3.RELEASE'
+
+    implementation "io.springfox:springfox-swagger2:${swaggerfoxSpringRelease}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerfoxSpringRelease}"
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE'
 }
 
 ext {
@@ -58,28 +60,10 @@ test {
     outputs.dir snippetsDir
 }
 
-processResources {
-    def branch, commit, dirty
-    doFirst {
-        branch = ['git', 'rev-parse', '--abbrev-ref', 'HEAD'].execute().text.trim()
-        commit = ['git', 'rev-parse', 'HEAD'].execute().text.take(6)
-        dirty = ['git', 'status', '--procelain'].execute().text.trim().isEmpty() ? '' : 'dirty'
-    }
-    filesMatching('**/*') {
-        filter {
-            it.replace('%APP_VERSION_TOKEN%', version)
-                    .replace('%GIT_BRANCH_TOKEN%', branch)
-                    .replace('%GIT_COMMIT_TOKEN%', commit)
-                    .replace('%GIT_DIRTY_TOKEN%', dirty)
-        }
+jar {
+    manifest {
+        attributes("Implementation-Version":version)
+        attributes("Implementation-Name":"Posts CMS Application")
     }
 }
-
-bootJar {
-}
-
-bootRun {
-    systemProperties = ['spring.config.location' : "file:posts-service/src/main/resources/application.properties"]
-}
-
 

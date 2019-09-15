@@ -18,8 +18,6 @@ package com.deepakshankar.posts.controller;
 
 import com.deepakshankar.posts.model.Post;
 import com.deepakshankar.posts.model.Reaction;
-import com.deepakshankar.posts.service.AuthorService;
-import com.deepakshankar.posts.service.ParagraphService;
 import com.deepakshankar.posts.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,12 +38,12 @@ public class PostController {
     private PostService service;
 
     @Autowired
-    public PostController(PostService service ) {
+    public PostController(PostService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Post> findAll(){
+    public List<Post> findAll() {
         return this.service.findAll();
     }
 
@@ -53,8 +51,9 @@ public class PostController {
     public Post findOne(@PathVariable(value = "id") final long id) {
         return service.findOne(id);
     }
+
     @PostMapping
-    public Post saveOne(@RequestBody final Post post){
+    public Post saveOne(@RequestBody final Post post) {
         return service.saveOne(post);
     }
 
