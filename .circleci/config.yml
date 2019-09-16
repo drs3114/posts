@@ -23,6 +23,9 @@ jobs:
 
     steps:
       - checkout
+      - dependencies:
+          - pre:
+              - source environmentSetup.sh && copyEnvVarsToGradleProperties
 
       # Download and cache dependencies
       - restore_cache:
