@@ -1,0 +1,36 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ],
+  "env": {
+    "POSTS_DB_HOST": {
+      "required": true
+    },
+    "POSTS_DB_PASSWORD": {
+      "required": true
+    },
+    "POSTS_DB_PORT": {
+      "required": true
+    },
+    "POSTS_DB_SCHEMA": {
+      "required": true
+    },
+    "POSTS_DB_USERNAME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "posts",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

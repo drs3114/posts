@@ -1,0 +1,20 @@
+                    ,o7||^Y.
+                ,.G:        ^\w
+          a^G|.`  ..~`` '`.~~.  ``|^">
+         b     .'`            ``.     "
+        !   .^` |b````77777777^! ``.   }
+        b  ~`   ^~^           C!   `*  ^
+       G  '                   Lj     `  3
+     /|  '        (IDDLLLLLLI>O^      .  .v
+    6`   `       j|b``````````        .    %
+    @    .       j[b                  .    ;
+     \`  .       j[~        .j)       ~   /
+       Q  ~      j[~  /p.-.C~``      ~` ,`
+        p `~     j[p2.j"'^`         '` .
+        ]   '-   j@$^~"`          .'   f
+         p    '~, ``           .~`    .~
+          V,`    ``^~......~`'`     ,>
+                `"G`         ,"`
+                    "G,  ,Z^
+${application.title} : Version : ${application.formatted-version}
+Powered by Spring Boot : Version : ${spring-boot.formatted-version}
