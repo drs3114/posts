@@ -4,6 +4,10 @@
 #
 version: 2
 jobs:
+  dependencies:
+    pre:
+      - source environmentSetup.sh && copyEnvVarsToGradleProperties
+
   build:
     docker:
       # specify the version you desire here
@@ -23,9 +27,6 @@ jobs:
 
     steps:
       - checkout
-      - dependencies:
-          - pre:
-              - source environmentSetup.sh && copyEnvVarsToGradleProperties
 
       # Download and cache dependencies
       - restore_cache:
